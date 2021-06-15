@@ -41,4 +41,23 @@ var countBinarySubstrings3 = (str) => {
   return count
 }
 
-export { countBinarySubstrings1, countBinarySubstrings2, countBinarySubstrings3 }
+var countBinarySubstrings4 = function (s) {
+  let pre = 0
+  let cur = 1
+  let result = 0
+
+  for (var i = 0; i < s.length - 1; i++) {
+    if (s[i] === s[i + 1]) {
+      cur++
+    } else {
+      pre = cur
+      cur = 1
+    }
+    if (pre >= cur) {
+      result++
+    }
+  }
+  return result
+}
+
+export { countBinarySubstrings1, countBinarySubstrings2, countBinarySubstrings3, countBinarySubstrings4 }

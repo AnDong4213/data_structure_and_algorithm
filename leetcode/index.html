@@ -46,17 +46,17 @@
       log(reverseWords(str)); */
 
       // 给定一个字符串 s，计算具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是连续的。重复出现的子串要计算它们出现的次数。
-      var str = "1011001101101";
+      var str = "01110001101101";
       var count = 0;
       var matchArr = str.match(/(1+|0+)/g);
-      log(matchArr);
+      log("str.match", matchArr);
       for (var i = 0; i < matchArr.length - 1; i++) {
         count += Math.min(matchArr[i].length, matchArr[i + 1].length);
       }
       log(count);
 
       let arr = str.replace(/10/g, "1 0").replace(/01/g, "0 1").split(/\s/);
-      log(arr);
+      log("str.replace", arr);
       let n = 0;
       for (i = 0; i < arr.length - 1; i++) {
         n += Math.min(arr[i].length, arr[i + 1].length);
@@ -86,9 +86,33 @@
         return r.length;
       };
       log(countBinarySubstrings3(str));
+
+      var countBinarySubstrings4 = function (s) {
+        let pre = 0,
+          cur = 1,
+          result = 0;
+        for (var i = 0; i < s.length - 1; i++) {
+          if (s[i] === s[i + 1]) {
+            // log(i);
+            cur++;
+          } else {
+            pre = cur;
+            cur = 1;
+          }
+          if (pre >= cur) {
+            // log("pre", pre);
+            // log("cur", cur);
+            result++;
+          }
+        }
+        return result;
+      };
+      log(countBinarySubstrings4(str));
+      log("01110001101101");
+
       log("-----------------------------");
 
-      let match = (str) => {  
+      let match = (str) => {
         let j = str.match(/^(0+|1+)/)[0];
         let o = (j[0] ^ 1).toString().repeat(j.length);
         let reg = new RegExp(`^(${j}${o})`);
@@ -99,9 +123,143 @@
         }
       };
       log(match(str));
-
       // $1，$2表达的是小括号分组里面的内容：$1是第一个小括号里的内容，$2是第二个小括号里面的内容
       // log("20112233".replace(/^(\d{4})(\d{2})(\d{2})$/, "$1*$2-$3"));  // 2011*22-33
+
+      log("-------------17. 电话号码的字母组合");
+      /* // 生成大写字母
+      function upperCaseChars() {
+        var letter = [];
+        for (var i = 65; i < 91; i++) {
+          letter.push(String.fromCharCode(i));
+        }
+        return letter;
+      }
+      log("upperCaseChars", upperCaseChars());
+
+      // 生成小写字母
+      function lowerCaseChars() {
+        var letter = [];
+        for (var i = 97; i < 123; i++) {
+          letter.push(String.fromCharCode(i));
+        }
+        return letter;
+      }
+      log("lowerCaseChars", lowerCaseChars()); */
+
+      /* var letterCombinations = function (digits) {
+        var letter = [],
+          num = digits.length,
+          obj = {},
+          number = "23456789",
+          arr = [],
+          sArr = [];
+        for (var i = 97; i < 123; i++) {
+          letter.push(String.fromCharCode(i));
+        }
+        for (var i = 0; i < number.length; i++) {
+          if (number[i] === "7" || number[i] === "9") {
+            obj[number[i]] = letter.splice(0, 4);
+          } else {
+            obj[number[i]] = letter.splice(0, 3);
+          }
+        }
+        for (var i = 0; i < num; i++) {
+          arr = [...arr, ...obj[digits[i]]];
+        }
+        log(arr);
+        var ar = arr.slice(),
+          two = "";
+        for (var i = 0; i < arr.length; i++) {
+          if (ar.length >= num) {
+            var ar2 = ar.slice(),
+              two = ar2.splice(0, num - 1).join("");
+            ar2.forEach((n) => {
+              sArr.push(`${two}${n}`);
+            });
+          }
+
+          ar.shift();
+        }
+        return sArr;
+      };
+      log("1111--", letterCombinations("23")); */
+
+      var letterCombinations = function (digits) {
+        if (!digits) {
+          return [];
+        }
+        var letter = [],
+          num = digits.length,
+          obj = {},
+          number = "23456789",
+          arr = [];
+        for (var i = 97; i < 123; i++) {
+          letter.push(String.fromCharCode(i));
+        }
+        for (var i = 0; i < number.length; i++) {
+          if (number[i] === "7" || number[i] === "9") {
+            obj[number[i]] = letter.splice(0, 4);
+          } else {
+            obj[number[i]] = letter.splice(0, 3);
+          }
+        }
+        if (num === 1) {
+          return obj[digits];
+        }
+        if (1 < num <= 4) {
+          for (var i = 0; i < num; i++) {
+            arr.push(obj[digits[i]]);
+          }
+          // return arr;
+        }
+        // var result = [];
+        var comb = (ar) => {
+          var result = [];
+
+          for (var m = 0; m < ar[0].length; m++) {
+            for (var n = 0; n < ar[1].length; n++) {
+              result.push(`${ar[0][m]}${ar[1][n]}`);
+            }
+          }
+
+          ar.splice(0, 2, result);
+          if (ar.length > 1) {
+            comb(ar);
+          } else {
+            return result;
+          }
+          // console.log("result", result);
+          // return ar[0];
+          return ar[0];
+        };
+        return comb(arr);
+        // console.log('88989', result)
+      };
+      log("1111--", letterCombinations("79"));
+
+      /* let cc = ["m", "n", "o", "p", "q", "r", "s", "t", "u", "v"];
+      function ffff(arr, num) {
+        if (num === 1) {
+          return arr;
+        }
+        var sArr = [],
+          ar = arr.slice(),
+          two = "";
+        for (var i = 0; i < arr.length; i++) {
+          if (ar.length >= num) {
+            var ar2 = ar.slice(),
+              two = ar2.splice(0, num - 1).join("");
+            ar2.forEach((n) => {
+              sArr.push(`${two}${n}`);
+            });
+          }
+
+          ar.shift();
+        }
+        return sArr;
+      }
+      log(ffff(cc, 4)); */
     </script>
   </body>
 </html>
