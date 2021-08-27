@@ -7,3 +7,33 @@ console.log(stack);
 const item1 = stack.pop();
 console.log(item1);
 console.log(stack); */
+
+const bracketStr = "()";
+const isValid = function (s) {
+  if (s.length % 2 === 1) {
+    return false;
+  }
+
+  const stack = [];
+  for (let i = 0; i < s.length; i++) {
+    const str = s[i];
+    if (str === "(" || str === "{" || str === "[") {
+      stack.push(str);
+    } else {
+      const p = stack[stack.length - 1];
+      if (
+        (p === "(" && str === ")") ||
+        (p === "{" && str === "}") ||
+        (p === "[" && str === "]")
+      ) {
+        stack.pop();
+      } else {
+        return false;
+      }
+    }
+  }
+  return stack.length === 0;
+};
+
+// isValid(bracketStr);
+console.log(isValid(bracketStr));
