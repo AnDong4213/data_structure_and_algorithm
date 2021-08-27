@@ -37,4 +37,4 @@ while(i < n) {
 }
 // 复杂度的规则，2n，3n都是n，或者说只取复杂度最高的那个，2n是两个相同复杂度，所以最高的也是n
 ```
-![avatar](../images/imooc2/360截图20210726202558786.jpg);
+![Image text](https://github.com/AnDong4213/data_structure_and_algorithm/blob/main/images/imooc2/360%E6%88%AA%E5%9B%BE20210726202558786.jpg);
