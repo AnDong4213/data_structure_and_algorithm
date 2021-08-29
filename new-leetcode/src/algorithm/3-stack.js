@@ -4,10 +4,23 @@ const stack = [];
 stack.push(1);
 stack.push(2);
 stack.push(3);
+stack.push(...[4, 5, 6]);
+stack.unshift(-2, -1, 0);
 console.log(stack);
 const item1 = stack.pop();
 console.log(item1);
+// console.log(stack.splice(2));
+// console.log(stack.slice(2));
+// stack.copyWithin(3, 0);
 console.log(stack);
+const aEntries = stack.entries();
+console.log(aEntries); // Array Iterator {}
+console.log(aEntries.next()); // {value: Array(2), done: false}
+console.log(aEntries.next().value);
+
+const aKeys = stack.keys();
+console.log(aKeys); // Array Iterator {}
+console.log(aKeys.next()); // {value: 0, done: false}
 
 {
   const bracketStr = "()";
@@ -42,13 +55,20 @@ console.log(stack);
 }
 
 //  十进制转二进制  Decimal to binary
-const decimalToBinary = (num) => {
-  const stack = [];
-  while (num > 0) {
-    stack.push(num % 2);
-    num = parseInt(num / 2);
-  }
+{
+  const decimalToBinary = (num) => {
+    const stack = [];
+    while (num > 0) {
+      stack.push(num % 2);
+      num = parseInt(num / 2);
+    }
 
-  return stack.reverse().join("");
-};
-console.log(decimalToBinary(543));
+    return stack.reverse().join("");
+  };
+  console.log(decimalToBinary(543));
+}
+
+{
+  // 数组的demo
+  console.log(new Array(7)); // (7) [empty × 7]
+}
