@@ -42,6 +42,8 @@ while(i < n) {
 
 ![Image text-w300](https://github.com/AnDong4213/data_structure_and_algorithm/blob/main/images/imooc2/360%E6%88%AA%E5%9B%BE20210726202558786.jpg =300);
 
+<p align="center"><img style="width: 300px;height: 176px;" src="https://github.com/AnDong4213/data_structure_and_algorithm/blob/main/images/imooc2/360%E6%88%AA%E5%9B%BE20210726202558786.jpg"></p>
+
 > 空间复杂度。1，一个函数，用大 O 表示，比如 O(1)、O(n)、O(n^2)。2，算法在运行过程中临时占用存储空间大小的量度<br />
 
 ```javascript
