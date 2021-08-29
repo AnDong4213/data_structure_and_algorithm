@@ -37,3 +37,15 @@ const isValid = function (s) {
 
 // isValid(bracketStr);
 console.log(isValid(bracketStr));
+
+//  十进制转二进制  Decimal to binary
+const decimalToBinary = (num) => {
+  const stack = [];
+  while (num > 0) {
+    stack.push(num % 2);
+    num = parseInt(num / 2);
+  }
+
+  return stack.reverse().join("");
+};
+console.log(decimalToBinary(543));
