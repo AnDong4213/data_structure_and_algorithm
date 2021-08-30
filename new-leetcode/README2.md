@@ -1,6 +1,8 @@
 [precommit 提交前格式化代码](https://prettier.io/docs/en/precommit.html)
 
 [prettier 代码美化](https://prettier.io/docs/en/install.html)
+8wf!E/SMY!&3f!r
+[js 数据结构与算法](https://account.packtpub.com/register)
 
 `JS数据结构与算法`
 
