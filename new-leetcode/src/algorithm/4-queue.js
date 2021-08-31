@@ -13,55 +13,109 @@ deQueue(): 从循环队列中删除一个元素。如果成功删除则返回真
 isEmpty(): 检查循环队列是否为空。
 isFull(): 检查循环队列是否已满。
  */
-class MyCircularQueue {
-  constructor(k) {
-    this.queue = new Array(k);
-    this.front = 0;
-    this.rear = 0;
-    this.max = k;
+{
+  class MyCircularQueue {
+    constructor(k) {
+      this.queue = new Array(k);
+      this.front = 0;
+      this.rear = 0;
+      this.max = k;
+    }
+
+    enQueue(value) {
+      if (this.isFull()) {
+        return false;
+      } else {
+        this.queue[this.rear] = value;
+        this.rear = (this.rear + 1) % this.max;
+        return true;
+      }
+    }
+    deQueue() {
+      if (!this.isEmpty()) {
+        this.queue[this.front] = "";
+        this.front = (this.front + 1) % this.max;
+        return true;
+      } else {
+        return false;
+      }
+    }
+    Front() {
+      if (this.isEmpty()) {
+        return -1;
+      } else {
+        return this.queue[this.front];
+      }
+    }
+    Rear() {
+      if (this.isEmpty()) {
+        return -1;
+      } else {
+        let rear = this.rear - 1;
+        return this.queue[rear < 0 ? this.max - 1 : rear];
+      }
+    }
+    isEmpty() {
+      return this.front === this.rear && !this.queue[this.front];
+    }
+    isFull() {
+      return this.front === this.rear && !!this.queue[this.front];
+    }
   }
 
-  enQueue(value) {
-    if (this.isFull()) {
-      return false;
-    } else {
-      this.queue[this.rear] = value;
-      this.rear = (this.rear + 1) % this.max;
-      return true;
-    }
-  }
-  deQueue() {
-    if (!this.isEmpty()) {
-      this.queue[this.front] = "";
-      this.front = (this.front + 1) % this.max;
-      return true;
-    } else {
-      return false;
-    }
-  }
-  Front() {
-    if (this.isEmpty()) {
-      return -1;
-    } else {
-      return this.queue[this.front];
-    }
-  }
-  Rear() {
-    if (this.isEmpty()) {
-      return -1;
-    } else {
-      let rear = this.rear - 1;
-      return this.queue[rear < 0 ? this.max - 1 : rear];
-    }
-  }
-  isEmpty() {
-    return this.front === this.rear && !this.queue[this.front];
-  }
-  isFull() {
-    return this.front === this.rear && !!this.queue[this.front];
-  }
+  const queue = new MyCircularQueue(5);
+  queue.enQueue(1);
+  console.log(queue.Rear());
 }
 
-const queue = new MyCircularQueue(5);
-queue.enQueue(1);
-console.log(queue.Rear());
+{
+  // 用es6实现 Queue
+  const Queue = (function () {
+    const items = new WeakMap();
+
+    class Queue {
+      constructor() {
+        items.set(this, []);
+      }
+
+      enqueue(element) {
+        let q = items.get(this);
+        q.push(element);
+      }
+
+      dequeue() {
+        let q = items.get(this);
+        let r = q.shift();
+        return r;
+      }
+
+      front() {
+        let q = items.get(this);
+        return q[0];
+      }
+
+      isEmpty() {
+        return items.get(this).length == 0;
+      }
+
+      size() {
+        let q = items.get(this);
+        return q.length;
+      }
+
+      clear() {
+        items.set(this, []);
+      }
+
+      print() {
+        console.log(this.toString());
+      }
+
+      toString() {
+        return items.get(this).toString();
+      }
+    }
+
+    return Queue;
+  })();
+}

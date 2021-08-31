@@ -96,6 +96,27 @@ console.log(aKeys.next()); // {value: 0, done: false}
     return stack.reverse().join("");
   };
   console.log(decimalToBinary(543));
+
+  // 十进制转任意进制
+  const baseConverter = (decNumber, base) => {
+    var remStack = [],
+      rem,
+      baseString = "",
+      digits = "0123456789ABCDEF";
+
+    while (decNumber > 0) {
+      rem = Math.floor(decNumber % base);
+      remStack.push(rem);
+      decNumber = Math.floor(decNumber / base);
+    }
+
+    while (remStack.length !== 0) {
+      baseString += digits[remStack.pop()];
+    }
+
+    return baseString;
+  };
+  console.log(baseConverter(543, 12));
 }
 
 {
@@ -189,11 +210,35 @@ console.log(aKeys.next()); // {value: 0, done: false}
     return Stack;
   })();
 
-  const s = new Stack();
+  /* const s = new Stack();
   s.push(9);
   s.push(91);
-  s.push(92);
+  s.push(92); */
   // console.log(s.pop()); // 92
   // console.log(s.toString()); // 9,91
   // 实现了私有属性items，用这种方法的话，扩展类无法继承私有属性，鱼和熊掌不可兼得。
+
+  function towerOfHanoi(n, from, to, helper) {
+    if (n > 0) {
+      towerOfHanoi(n - 1, from, helper, to);
+      to.push(from.pop());
+      towerOfHanoi(n - 1, helper, to, from);
+    }
+  }
+
+  var source = [7, 6, 5, 4, 3, 3, 2, 1];
+  var dest = [];
+  var helper = [];
+
+  towerOfHanoi(source.length, source, dest, helper);
+  console.log(dest);
 }
+var source = [7, 6, 5, 4, 3, 3, 2, 1];
+var hanota = function (A, B, C) {
+  while (A.length > 0) {
+    B.push(A.pop());
+    C.unshift(B.pop());
+  }
+  return C;
+};
+console.log(hanota(source, [], []));
