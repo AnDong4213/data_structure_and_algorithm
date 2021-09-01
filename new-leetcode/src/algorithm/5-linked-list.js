@@ -6,6 +6,7 @@
   a.next = b;
   b.next = c;
   c.next = d;
+  // console.log(JSON.stringify(a));
 
   // 遍历链表
   let p = a;
@@ -23,6 +24,40 @@
   // 删除
   c.next = d;
   console.log(a);
+}
+console.log("-------------------------------------------------");
+{
+  // 翻转单链表
+  const linkList = {
+    val: 1,
+    next: {
+      val: 2,
+      next: { val: 3, next: { val: 4, next: { val: 5, next: null } } }
+    }
+  };
+  // console.log(linkList);
+
+  // 迭代解法
+  /* let curr = linkList;
+  let prev = null;
+  while (curr) {
+    let temp = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = temp;
+  }
+  console.log(prev); */
+
+  // 递归解法
+  var reverseList = function (head) {
+    if (!head || !head.next) return head;
+
+    const flip = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+    return flip;
+  };
+  console.log(reverseList(linkList));
 }
 
 {
