@@ -27,7 +27,7 @@
 }
 console.log("-------------------------------------------------");
 {
-  // 翻转单链表
+  // 206 翻转单链表
   const linkList = {
     val: 1,
     next: {
@@ -49,7 +49,7 @@ console.log("-------------------------------------------------");
   console.log(prev); */
 
   // 递归解法
-  var reverseList = function (head) {
+  /* var reverseList = function (head) {
     if (!head || !head.next) return head;
 
     const flip = reverseList(head.next);
@@ -57,7 +57,57 @@ console.log("-------------------------------------------------");
     head.next = null;
     return flip;
   };
-  console.log(reverseList(linkList));
+  console.log(reverseList(linkList)); */
+
+  // 141环形链表
+  const linkList2 = {
+    val: 3,
+    next: {
+      val: 2,
+      next: { val: 0, next: { val: -4, next: null } }
+    }
+  };
+  var hasCycle = function (head) {
+    let p1 = head;
+    let p2 = head;
+    while (p1 && p2) {
+      p1 = p1.next;
+      p2 = p2.next?.next;
+      if (p1 === p2) {
+        return true;
+      }
+    }
+    return false;
+  };
+  console.log(hasCycle(linkList2));
+  console.log("-------------");
+
+  // 原型链本质是链表，原型链通过 __proto__ 属性连接各种原型对象
+  const obj = {};
+  console.log(obj);
+  console.log(obj.constructor === Object.prototype.constructor); // true
+  console.log(Object.getPrototypeOf(obj) === obj.__proto__); // true
+  console.log(obj.__proto__ === Object.prototype);
+  console.log(Object.getPrototypeOf(Object.prototype)); // null
+  console.log(Object.prototype.__proto__); // null
+  //  call apply bind是函数 Function原型的方法，所有函数继承自Function.prototype
+  const func = function () {};
+  console.log(func.__proto__ === Function.prototype); // true
+  console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype); // true
+  console.log("-----");
+  // instanceof的原理，并用代码实现
+  const instanceOf = function (A, B) {
+    let p = A;
+    while (p) {
+      if (p === B.prototype) {
+        return true;
+      }
+      // p = p.__proto__;
+      p = Object.getPrototypeOf(p);
+    }
+    return false;
+  };
+  console.log(instanceOf([], Object)); // true
 }
 
 {
@@ -236,3 +286,18 @@ console.log("--------------");
   }
   console.log(aa());
 } */
+
+{
+  // 前端与链表: 使用链表指针获取 JSON 的节点值
+  console.log("前端与链表: 使用链表指针获取 JSON 的节点值");
+  const json = {
+    a: { b: { c: 1 } },
+    d: { e: 2 }
+  };
+  const path = ["a", "b", "c"];
+  let p = json;
+  path.forEach((k) => {
+    p = p[k];
+  });
+  console.log(p);
+}
