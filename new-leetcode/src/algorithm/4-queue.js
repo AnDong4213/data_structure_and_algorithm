@@ -119,3 +119,104 @@ isFull(): 检查循环队列是否已满。
     return Queue;
   })();
 }
+
+{
+  // 优先队列
+  let PriorityQueue = (function () {
+    class QueueElement {
+      constructor(element, priority) {
+        this.element = element;
+        this.priority = priority;
+      }
+    }
+    const items = new WeakMap();
+    class PriorityQueue {
+      constructor() {
+        items.set(this, []);
+      }
+
+      enqueue(element, priority) {
+        let queueElement = new QueueElement(element, priority);
+        let q = items.get(this);
+        let added = false;
+
+        for (let i = 0; i < q.length; i++) {
+          if (queueElement.priority < q[i].priority) {
+            q.splice(i, 0, queueElement);
+            added = true;
+            break;
+          }
+        }
+        if (!added) {
+          q.push(queueElement);
+        }
+
+        items.set(this, q);
+      }
+
+      dequeue() {
+        let q = items.get(this);
+        let r = q.shift();
+        items.set(this, q);
+        return r;
+      }
+
+      front() {
+        let q = items.get(this);
+        return q[0];
+      }
+
+      isEmpty() {
+        return items.get(this).length == 0;
+      }
+
+      size() {
+        let q = items.get(this);
+        return q.length;
+      }
+
+      clear() {
+        items.set(this, []);
+      }
+
+      print() {
+        let q = items.get(this);
+        /* for (let i = 0; i < q.length; i++) {
+          console.log(`${q[i].element}  - ${q[i].priority}`);
+        } */
+        return q;
+      }
+    }
+
+    return PriorityQueue;
+  })();
+
+  let priorityQueue = new PriorityQueue();
+  priorityQueue.enqueue("John", 2);
+  priorityQueue.enqueue("Jack", 1);
+  priorityQueue.enqueue("Jack1", 13);
+  priorityQueue.enqueue("Jack2", 4);
+  priorityQueue.enqueue("Tom", 0);
+  console.log(priorityQueue.print());
+}
+
+{
+  // 循环队列-击鼓传花
+  const hotPotato = function (nameList, num) {
+    let queue = nameList;
+
+    let eliminated = "";
+    while (queue.length > 1) {
+      for (let i = 0; i < num; i++) {
+        queue.push(queue.shift());
+      }
+      eliminated = queue.shift();
+      console.log("eliminated", eliminated);
+    }
+
+    return queue.shift();
+  };
+
+  let names = ["John", "Jack", "Camila", "Ingrid", "Carl", "Tom", "Army"];
+  console.log(hotPotato(names, 26));
+}
