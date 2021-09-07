@@ -31,8 +31,7 @@ console.log(m1);
 console.log([...m1]);
 console.log(Object.fromEntries(m1)); */
 
-let nums = [2, 7, 11, 15];
-for (let num of nums) {
-  console.log(num);
-}
-console.log(nums.splice(0, 1));
+let nums = [2, 2, 7, 11, 15];
+for (let num of nums) console.log(num);
+// console.log(nums.splice(0, 1)); // [2]
+// console.log(nums.indexOf(2, 1));

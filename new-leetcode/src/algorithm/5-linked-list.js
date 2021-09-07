@@ -211,6 +211,23 @@ console.log("-------------------------------------------------");
         }
       }
 
+      // getElementAt(index)：返回链表中特定位置的元素。如果链表中不存在这样的元素，则返回undefined。
+      getElementAt(index) {
+        if (index > -1 && index < this.size()) {
+          let current = this.getHead(),
+            pos = 0;
+          while (current) {
+            if (pos === index) {
+              return current;
+            }
+            pos++;
+            current = current.next;
+          }
+        } else {
+          return undefined;
+        }
+      }
+
       // 从列表中移除一项
       remove(element) {
         let index = this.indexOf(element);
@@ -268,6 +285,7 @@ console.log("-------------------------------------------------");
   list.print();
   console.log(list.getHead());
   console.log(list.indexOf(2));
+  console.log(list.getElementAt(2));
   // console.log(list.removeAt(1));
   // console.log(list.getHead());
 }
