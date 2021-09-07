@@ -4,4 +4,6 @@
 
 // import "./algorithm/5-linked-list";
 
-import "./algorithm/6-set";
+// import "./algorithm/6-set";
+
+import "./algorithm/7-dictionary";
