@@ -74,6 +74,7 @@ const HashTable2 = (function () {
   class HashTable {
     table = [];
 
+    // 散列函数
     static loseloseHashCode(key) {
       let hash = 0;
       for (let i = 0; i < key.length; i++) {
@@ -150,7 +151,11 @@ const HashTable = (function () {
   class HashTable {
     table = [];
 
+    // 散列函数
     static loseloseHashCode(key) {
+      if (typeof key === "number") {
+        return key;
+      }
       let hash = 0;
       for (let i = 0; i < key.length; i++) {
         hash += key.charCodeAt(i);
@@ -179,7 +184,6 @@ const HashTable = (function () {
     get(key) {
       let position = this.hashCode(key);
       let table = this.table;
-      console.log(table[position]);
 
       if (table[position] !== undefined) {
         if (table[position].key === key) {
@@ -200,10 +204,9 @@ const HashTable = (function () {
     remove(key) {
       let position = this.hashCode(key);
       let table = this.table;
-      // console.log(table[position]);
+
       if (table[position] !== undefined) {
         if (table[position].key === key) {
-          // console.log(key);
           table[position] = undefined;
         } else {
           console.log(key);
@@ -226,7 +229,7 @@ const HashTable = (function () {
   return HashTable;
 })();
 
-let hash = new HashTable();
+let hash = new HashTable2();
 hash.put("Gandalf", "gandalf@email.com");
 hash.put("John", "johnsnow@email.com");
 hash.put("Tyrion", "tyrion@email.com");
@@ -269,3 +272,17 @@ console.log(arrL); //  [empty × 10, "9"] */
   };
   console.log(aa()); // 2
 } */
+
+{
+  const map = new Map();
+  map
+    .set("Gandalf", "gandalf@email.com")
+    .set("John", "johnsnow@email.com")
+    .set("Tyrion", "tyrion@email.com")
+    .set("Aaron", "aaron@email.com")
+    .set("Aaron", "aaron@email.com2");
+  console.log(map);
+  console.log(map.keys()); // MapIterator {"Gandalf", "John", "Tyrion", "Aaron"}
+  console.log(map.values()); // MapIterator {"gandalf@email.com", "johnsnow@email.com", "tyrion@email.com", "aaron@email.com2"}
+  console.log(map.has("Gandalf"));
+}
