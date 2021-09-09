@@ -6,4 +6,6 @@
 
 // import "./algorithm/6-set";
 
-import "./algorithm/7-dictionary";
+// import "./algorithm/7-dictionary";
+
+import "./algorithm/8-tree";
