@@ -286,3 +286,42 @@ console.log(arrL); //  [empty × 10, "9"] */
   console.log(map.values()); // MapIterator {"gandalf@email.com", "johnsnow@email.com", "tyrion@email.com", "aaron@email.com2"}
   console.log(map.has("Gandalf"));
 }
+{
+  console.log("--------------------------------");
+
+  var minWindow = function (s, t) {
+    let l = 0;
+    let r = 0;
+    let map = new Map();
+    let result = "";
+
+    for (let i of t) {
+      map.set(i, map.has(i) ? map.get(i) + 1 : 1);
+    }
+    let size = map.size;
+
+    while (r < s.length) {
+      let c1 = s[r];
+      if (map.has(c1)) {
+        map.set(c1, map.get(c1) - 1);
+        if (map.get(c1) === 0) size -= 1;
+      }
+      while (size === 0) {
+        let res = s.substring(l, r + 1);
+        if (!result || res.length < result.length) result = res;
+        let c2 = s[l];
+        if (map.has(c2)) {
+          map.set(c2, map.get(c2) + 1);
+          if (map.get(c2) === 1) size += 1;
+        }
+        l++;
+      }
+
+      r++;
+    }
+
+    return result;
+  };
+
+  minWindow("ADOBECODEBANC", "ABC");
+}
