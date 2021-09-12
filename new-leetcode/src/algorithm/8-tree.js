@@ -1,4 +1,4 @@
-const BinarySearchTree = (function () {
+export const BinarySearchTree = (function () {
   class Node {
     constructor(key) {
       this.key = key;
@@ -26,32 +26,6 @@ const BinarySearchTree = (function () {
       }
     }
 
-    static inOrderTraverseNode(node, callback) {
-      // 3 5 6 7 8 9 10 11 12 13 14 15 18 20 25
-      // console.log(node);
-      if (node !== null) {
-        this.inOrderTraverseNode(node.left, callback);
-        callback(node.key);
-        this.inOrderTraverseNode(node.right, callback);
-      }
-    }
-
-    static preOrderTraverseNode(node, callback) {
-      if (node !== null) {
-        callback(node.key);
-        this.preOrderTraverseNode(node.left, callback);
-        this.preOrderTraverseNode(node.right, callback);
-      }
-    }
-
-    static postOrderTraverseNode(node, callback) {
-      if (node !== null) {
-        this.postOrderTraverseNode(node.left, callback);
-        this.postOrderTraverseNode(node.right, callback);
-        callback(node.key);
-      }
-    }
-
     // 向树中插入一个新的键
     insert(key) {
       let newNode = new Node(key);
@@ -64,16 +38,39 @@ const BinarySearchTree = (function () {
     }
 
     // 通过中序遍历方式遍历所有节点
+    static inOrderTraverseNode(node, callback) {
+      // 3 5 6 7 8 9 10 11 12 13 14 15 18 20 25
+      // console.log(node);
+      if (node !== null) {
+        this.inOrderTraverseNode(node.left, callback);
+        callback(node.key);
+        this.inOrderTraverseNode(node.right, callback);
+      }
+    }
     inOrderTraverse(callback) {
       BinarySearchTree.inOrderTraverseNode(this.root, callback);
     }
 
     // 通过先序遍历方式遍历所有节点
+    static preOrderTraverseNode(node, callback) {
+      if (node !== null) {
+        callback(node.key);
+        this.preOrderTraverseNode(node.left, callback);
+        this.preOrderTraverseNode(node.right, callback);
+      }
+    }
     preOrderTraverse(callback) {
       BinarySearchTree.preOrderTraverseNode(this.root, callback);
     }
 
     // 通过后序遍历方式遍历所有节点
+    static postOrderTraverseNode(node, callback) {
+      if (node !== null) {
+        this.postOrderTraverseNode(node.left, callback);
+        this.postOrderTraverseNode(node.right, callback);
+        callback(node.key);
+      }
+    }
     postOrderTraverse(callback) {
       BinarySearchTree.postOrderTraverseNode(this.root, callback);
     }
@@ -162,7 +159,7 @@ tree.insert(30);
 tree.insert(46);
 tree.insert(70);
 
-console.log(JSON.stringify(tree.root, null, 4));
+// console.log(JSON.stringify(tree.root, null, 4));
 function printNode(value) {
   console.log(value);
 }
@@ -172,3 +169,5 @@ function printNode(value) {
 console.log(tree.min());
 console.log(tree.max());
 console.log(tree.search(1));
+
+console.log("-------------深度优先遍历----------------------");

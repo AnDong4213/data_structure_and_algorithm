@@ -8,4 +8,6 @@
 
 // import "./algorithm/7-dictionary";
 
-import "./algorithm/8-tree";
+// import "./algorithm/8-tree";
+
+import "./algorithm/8-tree-dfs";
