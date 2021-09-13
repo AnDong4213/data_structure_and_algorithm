@@ -122,16 +122,51 @@ export const BinarySearchTree = (function () {
       return BinarySearchTree.searchNode(this.root, key);
     }
 
+    static removeNode(node, key) {
+      if (node === null) {
+        return null;
+      }
+
+      if (key < node.key) {
+        node.left = this.removeNode(node.left, key);
+        return node;
+      } else if (key > node.key) {
+        node.right = this.removeNode(node.right, key);
+        return node;
+      } else {
+        //键等于 node.key
+
+        //第一种情况——一个叶节点
+        if (node.left === null && node.right === null) {
+          node = null;
+          return node;
+        }
+
+        //第二种情况——一个只有一个子节点的节点
+        if (node.left === null) {
+          node = node.right;
+          return node;
+        } else if (node.right === null) {
+          node = node.left;
+          return node;
+        }
+
+        //第三种情况——一个有两个子节点的节点
+        let aux = BinarySearchTree.findMinNode(node.right);
+        node.key = aux.key;
+        node.right = this.removeNode(node.right, aux.key);
+        return node;
+      }
+    }
+    // 移除一个节点
+    remove(key) {
+      this.root = BinarySearchTree.removeNode(this.root, key);
+    }
     static findMinNode(node) {
       while (node && node.left !== null) {
         node = node.left;
       }
       return node;
-    }
-    static removeNode(node, element) {}
-    // 移除一个节点
-    remove(element) {
-      this.root = BinarySearchTree.removeNode(this.root, element);
     }
   }
 
@@ -154,10 +189,10 @@ tree.insert(20);
 tree.insert(18);
 tree.insert(25);
 tree.insert(6);
-tree.insert(27);
-tree.insert(30);
-tree.insert(46);
-tree.insert(70);
+// tree.insert(27);
+// tree.insert(30);
+// tree.insert(46);
+// tree.insert(70);
 
 // console.log(JSON.stringify(tree.root, null, 4));
 function printNode(value) {
@@ -169,5 +204,23 @@ function printNode(value) {
 console.log(tree.min());
 console.log(tree.max());
 console.log(tree.search(1));
+
+/* {
+  const repeat = (str, n) => {
+    let res = "";
+    while (n) {
+      if (n % 2 === 1) res += str;
+      if (n > 1) str += str;
+      n >>= 1;
+    }
+    return res;
+  };
+
+  console.log(repeat("zad", 12));
+
+  let n = 28;
+  n >>= 1;
+  console.log(n);
+} */
 
 console.log("-------------深度优先遍历----------------------");

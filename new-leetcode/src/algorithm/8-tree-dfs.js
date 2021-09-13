@@ -78,7 +78,7 @@ tree.insert(18);
 tree.insert(25);
 tree.insert(6);
 
-console.log(JSON.stringify(tree.root, null, 4));
+// console.log(JSON.stringify(tree.root, null, 4));
 
 //先序遍历
 const preOrder = (root) => {
@@ -106,6 +106,6 @@ const postOrder = (root) => {
 
   postOrder(root.left);
   postOrder(root.right);
-  console.log(root.key); // 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
+  // console.log(root.key); // 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
 };
 postOrder(tree.root);
