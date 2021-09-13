@@ -10,6 +10,6 @@
 
 // import "./algorithm/8-tree";
 
-// import "./algorithm/8-tree-dfs";
+import "./algorithm/8-tree-dfs";
 
-import "./algorithm/8-tree-delete";
+// import "./algorithm/8-tree-delete";

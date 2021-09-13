@@ -78,7 +78,7 @@ tree.insert(18);
 tree.insert(25);
 tree.insert(6);
 
-// console.log(JSON.stringify(tree.root, null, 4));
+console.log(JSON.stringify(tree.root, null, 4));
 
 //先序遍历
 const preOrder = (root) => {
@@ -88,7 +88,20 @@ const preOrder = (root) => {
   preOrder(root.left);
   preOrder(root.right);
 };
+// 非递归版
+const preOrder2 = (root) => {
+  if (!root) return;
+  const stack = [root];
+
+  while (stack.length > 0) {
+    let n = stack.pop();
+    console.log(n.key);
+    if (n.right) stack.push(n.right);
+    if (n.left) stack.push(n.left);
+  }
+};
 // preOrder(tree.root);
+// preOrder2(tree.root);
 
 //中序遍历
 const inOrder = (root) => {
@@ -98,7 +111,30 @@ const inOrder = (root) => {
   console.log(root.key); // 3 5 6 7 8 9 10 11 12 13 14 15 18 20 25
   inOrder(root.right);
 };
+// 非递归版
+const inOrder2 = (root) => {
+  if (!root) return;
+
+  const stack = [];
+  let p = root;
+  while (stack.length || p) {
+    while (p) {
+      stack.push(p);
+      p = p.left;
+    }
+    /* if (stack.length === 4) {
+      console.log(stack);
+      return;
+    } */
+    const n = stack.pop();
+    console.log(n.key);
+    p = n.right;
+  }
+
+  // console.log(stack);
+};
 // inOrder(tree.root);
+inOrder2(tree.root);
 
 //后序遍历
 const postOrder = (root) => {
@@ -106,6 +142,6 @@ const postOrder = (root) => {
 
   postOrder(root.left);
   postOrder(root.right);
-  // console.log(root.key); // 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
+  console.log(root.key); // 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
 };
-postOrder(tree.root);
+// postOrder(tree.root);
