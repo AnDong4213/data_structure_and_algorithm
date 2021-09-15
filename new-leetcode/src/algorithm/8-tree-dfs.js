@@ -38,25 +38,28 @@ import { BinarySearchTree } from "./8-tree";
   };
 
   // 深度优先遍历  使用递归
+  // 深度优先遍历 (DFS Depth First Search) 就是一个节点不到头(叶子节点为空) 不回头
+  // 其中深度遍历就是我们所说的 先序遍历 中序遍历 后序遍历 , 先中后指的是根节点输出的时机
   const dfs = (root) => {
-    // console.log(root.val);
+    console.log(root.val);
     // root.children.forEach((child) => dfs(child));
     root.children.forEach(dfs);
   };
-  dfs(tree);
+  // dfs(tree);
 
   console.log("======================================");
 
   // 广度优先遍历  队列
+  // 广度有点遍历(BFS Breadth First Search) 就是一层一层输出 , 输出到最下层的叶子节点, 为空的时候结束
   const bfs = (root) => {
     const q = [root];
     while (q.length > 0) {
       const n = q.shift();
-      // console.log(n.val);
+      console.log(n.val);
       n.children.forEach((child) => q.push(child));
     }
   };
-  bfs(tree);
+  // bfs(tree);
 }
 
 console.log("===================================================");
@@ -78,7 +81,9 @@ tree.insert(18);
 tree.insert(25);
 tree.insert(6);
 
-console.log(JSON.stringify(tree.root, null, 4));
+// console.log(JSON.stringify(tree.root, null, 4));
+
+// 递归的坏处就是 , 出入栈消耗大量的内存, 每一次方法的调用都会保存大量的变量, 多以对于遍历来说并不好 ,非递归遍历的实现 , 基于栈的实现, 对于遍历节点保存在栈中, 出入栈 , 主要利用栈的后进先出的特性 , 很好的保证了, 后进的优先遍历 .
 
 //先序遍历
 const preOrder = (root) => {
@@ -122,19 +127,13 @@ const inOrder2 = (root) => {
       stack.push(p);
       p = p.left;
     }
-    /* if (stack.length === 4) {
-      console.log(stack);
-      return;
-    } */
     const n = stack.pop();
     console.log(n.key);
     p = n.right;
   }
-
-  // console.log(stack);
 };
 // inOrder(tree.root);
-inOrder2(tree.root);
+// inOrder2(tree.root);
 
 //后序遍历
 const postOrder = (root) => {
@@ -144,4 +143,23 @@ const postOrder = (root) => {
   postOrder(root.right);
   console.log(root.key); // 3 6 5 8 10 9 7 12 14 13 18 25 20 15 11
 };
+// 非递归版
+const postOrder2 = (root) => {
+  if (!root) return;
+
+  const outputStack = [];
+  const stack = [root];
+  while (stack.length) {
+    const n = stack.pop();
+    outputStack.push(n);
+    if (n.left) stack.push(n.left);
+    if (n.right) stack.push(n.right);
+  }
+  while (outputStack.length) {
+    const m = outputStack.pop();
+    console.log(m.key);
+  }
+};
+
 // postOrder(tree.root);
+// postOrder2(tree.root);
