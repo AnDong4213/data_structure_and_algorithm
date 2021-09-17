@@ -16,4 +16,4 @@
 
 // import "./algorithm/8-tree-deep";
 
-import "./algorithm/8-tree-json";
+import "./algorithm/9-graph";
