@@ -45,7 +45,7 @@ const pacificAtlantic = function (matrix) {
 
   const dfs = (r, c, flow) => {
     flow[r][c] = true;
-    // console.log(flow[r][c]);
+    // console.log([r, c]);
     [
       [r - 1, c],
       [r + 1, c],
@@ -66,16 +66,15 @@ const pacificAtlantic = function (matrix) {
   };
 
   for (let r = 0; r < m; r++) {
-    dfs(r, 0, flow1);
-    // console.log(r, n - 1);
-    dfs(r, n - 1, flow2);
+    dfs(r, 0, flow1); // 太平洋
+    dfs(r, n - 1, flow2); // 大西洋
   }
   for (let c = 0; c < n; c++) {
-    dfs(0, c, flow1);
-    dfs(m - 1, c, flow2);
+    dfs(0, c, flow1); // 太平洋
+    dfs(m - 1, c, flow2); // 大西洋
   }
-  // console.log(flow1);
-  // console.log(flow2);
+  // console.log(JSON.stringify(flow1));
+  // console.log(JSON.stringify(flow2));
   const res = [];
   for (let r = 0; r < m; r++) {
     for (let c = 0; c < n; c++) {
@@ -89,9 +88,10 @@ const pacificAtlantic = function (matrix) {
 };
 
 let m = [
-  [1, 2, 2, 3],
-  [3, 2, 3, 4],
-  [2, 4, 5, 13],
-  [6, 7, 1, 4]
+  [1, 2, 2, 3, 5],
+  [3, 2, 3, 4, 4],
+  [2, 4, 5, 3, 1],
+  [6, 7, 1, 4, 5],
+  [5, 1, 1, 2, 4]
 ];
-pacificAtlantic(m); // [[0,3],[1,3],[2,2],[2,3],[3,0],[3,1]]  [[0,3],[1,3],[2,2],[2,3],[3,0],[3,1]]
+pacificAtlantic(m); // [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
