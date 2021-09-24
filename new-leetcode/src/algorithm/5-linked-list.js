@@ -287,7 +287,7 @@ console.log("-------------------------------------------------");
   console.log(list.indexOf(2));
   console.log(list.getElementAt(2));
   // console.log(list.removeAt(1));
-  // console.log(list.getHead());
+  console.log(list.getHead());
 }
 console.log("--------------");
 /* {
