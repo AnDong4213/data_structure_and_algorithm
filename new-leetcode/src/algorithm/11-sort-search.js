@@ -23,7 +23,7 @@ class ArrayList {
     const arr = this.array,
       length = arr.length;
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < length - 1; i++) {
       for (let j = 0; j < length - 1 - i; j++) {
         if (arr[j] > arr[j + 1]) {
           this.swap(j, j + 1);
@@ -51,7 +51,7 @@ class ArrayList {
     }
   }
 
-  // 插入排序  排序小型数组时，此算法比选择排序和冒泡排序性能要
+  // 插入排序，从第二个数开始往前比，比它大就往后排  排序小型数组时，此算法比选择排序和冒泡排序性能要好
   insertionSort() {
     let arr = this.array,
       length = arr.length,
@@ -68,7 +68,7 @@ class ArrayList {
     }
   }
 
-  // 归并排序，归并排序是一种分治算法。其思想是将原始数组切分成较小的数组，直到每个小数组只有一个位置，接着将小数组归并成较大的数组，直到最后只有一个排序完毕的大数组
+  // 归并排序，归并排序是一种分治算法。其思想是将原始数组切分成较小的数组，直到每个小数组只有一个位置，接着将小数组归并成较大的数组，直到最后只有一个排序完毕的大数组，火狐浏览器的sort算法就是用的归并排序，而Chrome使用了一个快速排序的变体。
   // 其复杂度为O(nlogn)。
   merge(left, right) {
     let result = [],
@@ -130,11 +130,9 @@ class ArrayList {
     return i;
   }
   quick(array, left, right) {
-    var index;
-
+    let index;
     if (array.length > 1) {
       index = this.partition(array, left, right);
-
       if (left < index - 1) {
         this.quick(array, left, index - 1);
       }
@@ -183,12 +181,13 @@ array.insert(123);
 array.insert(13);
 array.insert(13523);
 array.insert(523);
-// array.insert(5623);
 
 // array.bubbleSort();
 // array.selectionSort();
 // array.insertionSort();
 // array.mergeSort();
 array.quickSort();
-console.log(array.binarySearch(2));
+// console.log(array.binarySearch(2));
 console.log(array.toString());
+
+// console.log(array.array.sort((a, b) => a - b));
