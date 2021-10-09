@@ -69,8 +69,8 @@ class MinCoinChange {
     return this.cache[amount];
   }
 }
-let minCoinChange = new MinCoinChange([1, 5, 10, 25]);
-console.log(minCoinChange.makeChange(36));
+let minCoinChange = new MinCoinChange([1, 5, 10, 36]);
+console.log(minCoinChange.makeChange(136));
 
 // let minCoinChange2 = new MinCoinChange([1, 3, 4]);
 // console.log(minCoinChange2.makeChange(6));

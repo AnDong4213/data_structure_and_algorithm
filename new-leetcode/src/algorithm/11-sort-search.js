@@ -185,8 +185,8 @@ array.insert(523);
 // array.bubbleSort();
 // array.selectionSort();
 // array.insertionSort();
-// array.mergeSort();
-array.quickSort();
+array.mergeSort();
+// array.quickSort();
 // console.log(array.binarySearch(2));
 console.log(array.toString());
 
