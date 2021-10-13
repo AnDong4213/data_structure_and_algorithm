@@ -40,8 +40,10 @@ class MinCoinChange {
 
   makeChange(amount) {
     if (!amount) {
+      console.log("-------------");
       return [];
     }
+    console.log("this.cache", this.cache);
     if (this.cache[amount]) {
       return this.cache[amount];
     }
@@ -50,27 +52,31 @@ class MinCoinChange {
       newAmount;
     for (let i = 0; i < this.coins.length; i++) {
       let coin = this.coins[i];
-      console.log(coin);
       newAmount = amount - coin;
+      console.log(amount, newAmount, i, coin);
       if (newAmount >= 0) {
         newMin = this.makeChange(newAmount);
       }
+      console.log("newMin****", newMin);
       if (
         newAmount >= 0 &&
         (newMin.length < min.length - 1 || !min.length) &&
         (newMin.length || !newAmount)
       ) {
+        console.log("newMin****---", newMin);
         min = [coin].concat(newMin);
-        // console.log("new Min " + min + " for " + amount);
       }
     }
+    // console.log(min);
     // return (this.cache[amount] = min);
+    debugger;
     this.cache[amount] = min;
+    console.log("++++++++++++", amount, min);
     return this.cache[amount];
   }
 }
-let minCoinChange = new MinCoinChange([1, 5, 10, 36]);
-console.log(minCoinChange.makeChange(136));
+let minCoinChange = new MinCoinChange([1, 2, 3]);
+console.log(minCoinChange.makeChange(8));
 
 // let minCoinChange2 = new MinCoinChange([1, 3, 4]);
 // console.log(minCoinChange2.makeChange(6));
@@ -109,3 +115,12 @@ console.log(minCoinChange.makeChange(136));
 };
 
 console.log(minCoinChange3([1, 5, 10, 25], 36)); */
+
+/* let coins = [1, 2, 3],
+  amount = 1,
+  newAmount;
+for (let i = 0; i < coins.length; i++) {
+  let coin = coins[i];
+  newAmount = amount - coin;
+  console.log(newAmount);
+} */

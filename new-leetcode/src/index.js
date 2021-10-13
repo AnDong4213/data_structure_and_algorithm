@@ -22,6 +22,6 @@
 
 // import "./algorithm/10-heap";
 
-import "./algorithm/11-sort-search";
+// import "./algorithm/11-sort-search";
 
-// import "./algorithm/12-algorithm-design-idea";
+import "./algorithm/12-algorithm-design-idea";
