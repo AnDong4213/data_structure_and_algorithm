@@ -43,8 +43,8 @@ class MinCoinChange {
       console.log("-------------");
       return [];
     }
-    console.log("this.cache", this.cache);
     if (this.cache[amount]) {
+      console.log("this.cache", this.cache);
       return this.cache[amount];
     }
     let min = [],
@@ -69,58 +69,22 @@ class MinCoinChange {
     }
     // console.log(min);
     // return (this.cache[amount] = min);
-    debugger;
+    // debugger;
     this.cache[amount] = min;
     console.log("++++++++++++", amount, min);
     return this.cache[amount];
   }
 }
-let minCoinChange = new MinCoinChange([1, 2, 3]);
-console.log(minCoinChange.makeChange(8));
+// let minCoinChange = new MinCoinChange([1, 2, 3]);
+// console.log(minCoinChange.makeChange(8));
 
 // let minCoinChange2 = new MinCoinChange([1, 3, 4]);
 // console.log(minCoinChange2.makeChange(6));
 
-/* const minCoinChange3 = (coins, amount) => {
-  let cache = {};
-
-  if (!amount) {
-    return [];
-  }
-
-  let makeChange = (amount) => {
-    if (cache[amount]) {
-      return cache[amount];
-    }
-    let min = [],
-      newMin,
-      newAmount;
-    for (let i = 0; i < coins.length; i++) {
-      let coin = coins[i];
-      newAmount = amount - coin;
-      if (newAmount >= 0) {
-        newMin = makeChange(newAmount);
-      }
-      if (
-        newAmount >= 0 &&
-        (newMin.length < min.length - 1 || !min.length) &&
-        (newMin.length || !newAmount)
-      ) {
-        min = [coin].concat(newMin);
-        // console.log("new Min " + min + " for " + amount);
-      }
-    }
-    return (cache[amount] = min);
-  };
+const mergeArraysConcat = (arrays) => {
+  return arrays.reduce((p, n) => p.concat(n), []);
 };
+console.log(mergeArraysConcat([[1, 2, 3], [4, 5], [6]]));
 
-console.log(minCoinChange3([1, 5, 10, 25], 36)); */
-
-/* let coins = [1, 2, 3],
-  amount = 1,
-  newAmount;
-for (let i = 0; i < coins.length; i++) {
-  let coin = coins[i];
-  newAmount = amount - coin;
-  console.log(newAmount);
-} */
+const mergeArrays = (...arrays) => [].concat(...arrays);
+console.log(mergeArrays([1, 2, 3], [4, 5], [6]));
