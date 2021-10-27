@@ -24,4 +24,6 @@
 
 // import "./algorithm/11-sort-search";
 
-import "./algorithm/12-algorithm-design-idea";
+// import "./algorithm/12-algorithm-design-idea";
+
+import "./algorithm/leetcode";
