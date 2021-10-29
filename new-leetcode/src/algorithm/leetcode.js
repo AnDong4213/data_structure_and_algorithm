@@ -48,4 +48,24 @@ var subsets = function (nums) {
   console.log(JSON.stringify(arr));
 };
 subsets([1, 2, 3]);
+
+var subsets2 = function (nums) {
+  const res = [];
+
+  const recall = (path, l, start) => {
+    if (path.length === l) {
+      res.push(path);
+      return;
+    }
+
+    for (let i = start; i < nums.length; i++) {
+      recall(path.concat(nums[i]), l, i + 1);
+    }
+  };
+  for (let i = 0; i <= nums.length; i++) {
+    recall([], i, 0);
+  }
+  console.log(JSON.stringify(res));
+};
+subsets2([1, 2, 3]);
 // [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
