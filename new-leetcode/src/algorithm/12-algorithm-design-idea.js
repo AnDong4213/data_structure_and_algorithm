@@ -86,5 +86,9 @@ const mergeArraysConcat = (arrays) => {
 };
 console.log(mergeArraysConcat([[1, 2, 3], [4, 5], [6]]));
 
+/* const mergeArrays = (...arrays) => {
+  console.log(arrays); // [Array(3), Array(2), Array(1)]
+  return [].concat(...arrays);
+}; */
 const mergeArrays = (...arrays) => [].concat(...arrays);
 console.log(mergeArrays([1, 2, 3], [4, 5], [6]));
