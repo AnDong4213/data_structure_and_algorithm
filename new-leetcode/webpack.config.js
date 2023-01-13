@@ -35,6 +35,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader" //babel-loader处理js文件的时候， babel-loader只是一个webpack和babel做通信的一个桥梁，用了之后做了打通，但并不会把es6语法翻译成es5语法，还需要其他的一些模块才能  @babel/preset-env
+        // loader：是webpack用来预处理模块的，在一个模块被引入之前，会预先使用loader处理模块的内容。。webpack中的loader就是帮助预处理下模块中的内容。默认webpack只会处理js代码，所以当我们想要去打包其他内容时，让webpack处理其他类型的内容，就要使用相应的loader
       }
     ]
   },

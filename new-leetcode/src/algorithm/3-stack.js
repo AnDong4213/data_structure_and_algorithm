@@ -1,27 +1,30 @@
 // 栈是一个后进先出的数据结构。(放进去-push-入栈，拿出来-pop-出栈)
 
-/* const stack = [];
-stack.push(1);
-stack.push(2);
-stack.push(3);
-stack.push(...[4, 5, 6]);
-stack.unshift(-2, -1, 0);
-console.log(stack);
-const item1 = stack.pop();
-console.log(item1);
-// console.log(stack.splice(2));
-// console.log(stack.slice(2));
-// stack.copyWithin(3, 0);
-console.log(stack);
-const aEntries = stack.entries();
-console.log(aEntries); // Array Iterator {}
-console.log(aEntries.next()); // {value: Array(2), done: false}
-console.log(aEntries.next().value);
+{
+  const stack = [];
+  stack.push(1);
+  stack.push(2);
+  stack.push(3);
+  stack.push(...[4, 5, 6]);
+  stack.unshift(-3, -2, -1, 0);
+  console.log(stack);
+  // const item1 = stack.pop();
+  // console.log(item1);
+  // console.log(stack.splice(2));
+  console.log(stack.slice(2));
+  // stack.copyWithin(3, 1, 3);
+  console.log(stack);
+  const aEntries = stack.entries();
+  console.log(aEntries); // Array Iterator {}
+  console.log(aEntries.next()); // {value: Array(2), done: false}
+  console.log(aEntries.next().value);
 
-const aKeys = stack.keys();
-console.log(aKeys); // Array Iterator {}
-console.log(aKeys.next()); // {value: 0, done: false}
- */
+  const aKeys = stack.keys();
+  console.log(aKeys); // Array Iterator {}
+  console.log(aKeys.next()); // {value: 0, done: false}
+  console.log(aKeys.next()); // {value: 1, done: false}
+  console.log("---------------------------------");
+}
 {
   // 20. 有效的括号
   // 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
@@ -95,7 +98,7 @@ console.log(aKeys.next()); // {value: 0, done: false}
 
     return stack.reverse().join("");
   };
-  console.log(decimalToBinary(543));
+  console.log(decimalToBinary(14));
 
   // 十进制转任意进制
   const baseConverter = (decNumber, base) => {
@@ -116,7 +119,7 @@ console.log(aKeys.next()); // {value: 0, done: false}
 
     return baseString;
   };
-  console.log(baseConverter(543, 12));
+  console.log(baseConverter(543, 16));
 }
 
 {
@@ -233,12 +236,15 @@ console.log(aKeys.next()); // {value: 0, done: false}
   towerOfHanoi(source.length, source, dest, helper);
   console.log(dest);
 }
-var source = [7, 6, 5, 4, 3, 3, 2, 1];
-var hanota = function (A, B, C) {
-  while (A.length > 0) {
-    B.push(A.pop());
-    C.unshift(B.pop());
-  }
-  return C;
-};
-console.log(hanota(source, [], []));
+
+{
+  var source = [7, 6, 5, 4, 3, 3, 2, 1];
+  var hanota = function (A, B, C) {
+    while (A.length > 0) {
+      B.push(A.pop());
+      C.unshift(B.pop());
+    }
+    return C;
+  };
+  console.log(hanota(source, [], []));
+}

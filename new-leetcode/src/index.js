@@ -1,4 +1,4 @@
-// import "./algorithm/3-stack";
+import "./algorithm/3-stack";
 
 // import "./algorithm/4-queue";
 
@@ -24,6 +24,6 @@
 
 // import "./algorithm/11-sort-search";
 
-import "./algorithm/12-algorithm-design-idea";
+// import "./algorithm/12-algorithm-design-idea";
 
 // import "./algorithm/leetcode";
